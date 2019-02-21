@@ -30,6 +30,40 @@ type Mutation {
     deleteUser(
         id: ID @rules(apply: ["required"])
     ): User @delete(model: "App\\User")
+
+    createBook(
+        title: String! @rules(apply: ["required"])
+        author: String! @rules(apply: ["required"])
+        image: String
+        link: String
+        description: String
+        featured: Boolean
+        category: Int!
+    ): Book @create
+    updateBook(
+        id: ID @rules(apply: ["required"])
+        title: String! @rules(apply: ["required"])
+        author: String! @rules(apply: ["required"])
+        image: String
+        link: String
+        description: String
+        featured: Boolean
+        category: Int!
+    ): Book @update
+    deleteBook(
+        id: ID! @rules(apply: ["required"])
+    ): Book @delete
+
+    createCategory(
+        name: String @rules(apply: ["required", "unique:categories,name"])
+    ): Category @create
+    updateCategory(
+        id: ID @rules(apply: ["required"])
+        name: String  @rules(apply: ["required", "unique:categories,name"])
+    ): Category @update
+    deleteCategory(
+        id: ID! @rules(apply: ["required"])
+    ): Category @delete
 }
 
 type User {
