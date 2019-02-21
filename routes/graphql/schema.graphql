@@ -10,6 +10,11 @@ type Query {
 
     books: [Book] @all
     book(id: ID @eq): Book @find
+    booksByFeatured(featured: Boolean! @eq): [Book] @all
+    someComplexQuery(search: String!): [Book] # custom directive, look for the some complex query file
+
+    categories: [Category] @all
+    category(id: ID @eq): Category @find
 }
 
 type Mutation {
